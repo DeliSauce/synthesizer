@@ -2,8 +2,9 @@ import {createStore} from 'redux';
 import rootReducer from '../reducers/root_reducer';
 
 const preloadedState = {
-  notes: ['a', 's'],
+  notes: [],
   isRecording: false,
+  isPlaying: false,
   tracks: {
     "1": {
       id: 1,
@@ -30,7 +31,6 @@ const preloadedState = {
   }
 };
 
-// const configureStore = createStore(rootReducer, preloadedState);
 const configureStore = (state = preloadedState) => {
   return createStore(rootReducer, state);
 };

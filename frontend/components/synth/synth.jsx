@@ -7,17 +7,19 @@ import NoteKey from './note_key';
 class Synth extends React.Component {
   constructor(props){
     super(props);
-    this.notes = NOTE_NAMES.map((note) => new Note(TONES[note]));
-    console.log(this.notes);
+    this.noteObjs = NOTE_NAMES.map((note) => new Note(TONES[note]));
+    console.log(this.noteObjs);
   }
 
   onKeyDown(e) {
     console.log(`you pressed ${e.key}`);
+    if(this.props.isRecording) this.props.addNotes(this.props.notes);
     this.props.keyPressed(e.key);
   }
 
   onKeyUp(e) {
     this.props.keyReleased(e.key);
+    if(this.props.isRecording) this.props.addNotes(this.props.notes);
     console.log(`you released ${e.key}`);
   }
 
@@ -29,9 +31,9 @@ class Synth extends React.Component {
   playNotes() {
     NOTE_NAMES.forEach((note, idx) => {
       if (this.props.notes.includes(note)) {
-        this.notes[idx].start();
+        this.noteObjs[idx].start();
       } else {
-        this.notes[idx].stop();
+        this.noteObjs[idx].stop();
       }
     });
   }

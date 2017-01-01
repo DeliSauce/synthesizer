@@ -1,4 +1,4 @@
-import {START_RECORDING, STOP_RECORDING} from '../../actions/tracks_actions';
+import {START_RECORDING, STOP_RECORDING} from '../actions/tracks_actions';
 
 const isRecordingReducer = (state = false, action) => {
   switch(action.type) {
